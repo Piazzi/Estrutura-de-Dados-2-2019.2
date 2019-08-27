@@ -9,6 +9,7 @@
 #include "ShellSort.h"
 #include "QuickSort.h"
 #include "MergeSort.h"
+#include "HeapSort.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -79,48 +80,50 @@ void Menu(int vet[],int n)
     switch (option)
     {
     case 1:
-    {
-        InsertionSort is;
-        is.insertionSort(vet, n);
-        break;
-    }
-    /*
+        {
+            InsertionSort is;
+            is.insertionSort(vet, n);
+            break;
+        }
     case 2:
-
-    break;
-    */
+        {
+            HeapSort hs;
+            hs.heapSort(vet,n);
+            break;
+        }
     case 3:
-    {
-        MergeSort ms;
-        ms.mergeSort(vet, 0, n);
-    }
-    break;
+        {
+            MergeSort ms;
+            ms.mergeSort(vet, 0, n);
+            break;
+
+        }
 
     case 4:
-    {
-        QuickSort qs;
-        qs.quickSort(vet,0 , n-1);
-        break;
-    }
+        {
+            QuickSort qs;
+            qs.quickSort(vet,0, n-1);
+            break;
+        }
     case 5:
-    {
-        QuickSort qs;
-        qs.quickSortMediana(vet, 0, n -1, 5);
-        break;
-    }
+        {
+            QuickSort qs;
+            qs.quickSortMediana(vet, 0, n -1, 5);
+            break;
+        }
 
     case 6:
-    {
-        QuickSort qs;
-        qs.quickSortInsercao(vet, 0, n -1, 10);
-        break;
-    }
+        {
+            QuickSort qs;
+            qs.quickSortInsercao(vet, 0, n -1, 10);
+            break;
+        }
     case 7:
-    {
-        ShellSort ss;
-        ss.shellSort(vet, n);
-        break;
-    }
+        {
+            ShellSort ss;
+            ss.shellSort(vet, n);
+            break;
+        }
 
     case 0:
         exit(1);
