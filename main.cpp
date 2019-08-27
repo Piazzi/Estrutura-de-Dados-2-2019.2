@@ -7,11 +7,12 @@
 #include <chrono>
 #include "InsertionSort.h"
 #include "ShellSort.h"
+#include "QuickSort.h"
 
 using namespace std;
 using namespace std::chrono;
 
-/// Variaveis do quickSort.cpp que registram as estatisticas;
+/// Variaveis que registram as estatisticas;
 extern int numComparacoes;
 extern int numCopias;
 
@@ -30,6 +31,10 @@ void swap(int *x, int *y)
     *y = aux;
 }
 
+/**
+ * Imprime na tela um array
+ * @return void
+*/
 void print(int vet[], int n)
 {
     for(int i = 0; i < n; i++)
@@ -39,6 +44,10 @@ void print(int vet[], int n)
     cout << endl;
 }
 
+/**
+ * Gera um vetor aleatório de tamanho n
+ * @return void
+*/
 void randomVector(int vet[], int n)
 {
     for(int i = 0; i < n; i++)
@@ -58,7 +67,7 @@ void Menu(int vet[],int n)
     cout << "-- Quick Sort --" << endl;
     cout << "[4] = Quick Sort" << endl;
     cout << "[5] = Quick Sort Mediana [5]" << endl;
-    cout << "[6] = Quick Sort Inserção [10]" << endl;
+    cout << "[6] = Quick Sort Insercao [10]" << endl;
     cout << "-- Meu Sort --" << endl;
     cout << "[7] = ShellSort" << endl;
     cout << "-- Sair --" << endl;
@@ -74,24 +83,32 @@ void Menu(int vet[],int n)
         is.insertionSort(vet, n);
         break;
     }
-
     /*
     case 2:
 
     break;
     case 3:
-
-    break;
-    case 4:
-
-    break;
-    case 5:
-
-    break;
-    case 6:
-
     break;
     */
+    case 4:
+    {
+        QuickSort qs;
+        qs.quickSort(vet,0 , n-1);
+        break;
+    }
+    case 5:
+    {
+        QuickSort qs;
+        qs.quickSortMediana(vet, 0, n -1, 5);
+        break;
+    }
+
+    case 6:
+    {
+        QuickSort qs;
+        qs.quickSortInsercao(vet, 0, n -1, 10);
+        break;
+    }
     case 7:
     {
         ShellSort ss;
