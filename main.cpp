@@ -8,6 +8,7 @@
 #include "InsertionSort.h"
 #include "ShellSort.h"
 #include "QuickSort.h"
+#include "MergeSort.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -87,9 +88,14 @@ void Menu(int vet[],int n)
     case 2:
 
     break;
-    case 3:
-    break;
     */
+    case 3:
+    {
+        MergeSort ms;
+        ms.mergeSort(vet, 0, n);
+    }
+    break;
+
     case 4:
     {
         QuickSort qs;
