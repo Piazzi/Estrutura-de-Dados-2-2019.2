@@ -16,3 +16,11 @@
 	<chrono>
 	"InsertionSort.h"
 
+1566915258 source:c:\users\usuário\desktop\ed2\shellsort.cpp
+	"ShellSort.h"
+
+1566915263 c:\users\usuário\desktop\ed2\shellsort.h
+	<iostream>
+	<stdlib.h>
+	<chrono>
+
