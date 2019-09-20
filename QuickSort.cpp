@@ -33,6 +33,30 @@ int QuickSort::particionar(int arr[], int inicio, int fim)
     return (i + 1);
 }
 
+int QuickSort::particionar(GameReview arr[], int inicio, int fim)
+{
+    int pivo = arr[fim].GetInternalId();
+    numCopias++;
+
+    int i = (inicio - 1);
+
+    for (int j = inicio; j <= fim - 1; j++)
+    {
+        numComparacoes++;
+        if (arr[j].GetInternalId() <= pivo)
+        {
+            i++;
+            swap(arr[i], arr[j]);
+            numCopias+=3;
+        }
+    }
+
+    swap(arr[i + 1], arr[fim]);
+    numCopias+=3;
+
+    return (i + 1);
+}
+
 
 /**
  * Utiliza o algortimo de Quick Sort recursivo para ordenar um dado array de inteiros
@@ -43,6 +67,17 @@ int QuickSort::particionar(int arr[], int inicio, int fim)
  * @return void
 */
 void QuickSort::quickSort(int arr[], int inicio, int fim)
+{
+    if (inicio < fim)
+    {
+        int pi = particionar(arr, inicio, fim);
+
+        quickSort(arr, inicio, pi - 1);
+        quickSort(arr, pi + 1, fim);
+    }
+}
+
+void QuickSort::quickSort(GameReview arr[], int inicio, int fim)
 {
     if (inicio < fim)
     {
@@ -89,7 +124,8 @@ int QuickSort::mediana(int arr[], int inicio, int fim, int k)
     int indiceMediana;
     int indiceRand;
 
-    int vetor[k];
+    //int vetor[k];
+	int* vetor = (int*)malloc(k * sizeof(int));
     for (int i = 0; i < k; i++)
     {
         srand(i);

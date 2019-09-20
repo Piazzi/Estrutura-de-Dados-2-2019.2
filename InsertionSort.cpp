@@ -15,6 +15,21 @@ void InsertionSort::insertionSort(int vet[], int TAM)
     }
 }
 
+void InsertionSort::insertionSort(GameReview vet[], int TAM)
+{
+	for (int i = 0; i < TAM; i++)
+	{
+		int valorAtual = vet[i].GetInternalId();
+
+		for (int j = i; j != 0 && vet[j + 1].GetInternalId() > vet[j].GetInternalId(); j--)
+		{
+			swap(vet[j], vet[j + 1]);
+			numCopias += 3;
+		}
+		numComparacoes++;
+	}
+}
+
 void InsertionSort::insertionSortHibrido(int arr[], int inicio, int fim)
 {
     int i, j;
@@ -35,5 +50,28 @@ void InsertionSort::insertionSortHibrido(int arr[], int inicio, int fim)
 		}
 		arr[j + 1] = chave;
         numCopias++;
+	}
+}
+
+void InsertionSort::insertionSortHibrido(GameReview vet[], int inicio, int fim)
+{
+	int i, j;
+	GameReview chave;
+
+	for (i = inicio + 1; i < fim; i++)
+	{
+		chave = vet[i];
+		numCopias++;
+
+		j = i - 1;
+
+		while (j >= 0 && (vet[j].GetInternalId() > chave.GetInternalId()))
+		{
+			vet[j + 1] = vet[j];
+			numCopias++;
+			j--;
+		}
+		vet[j + 1] = chave;
+		numCopias++;
 	}
 }

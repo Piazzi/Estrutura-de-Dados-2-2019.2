@@ -3,13 +3,15 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include <bits/stdc++.h>
 #include <chrono>
+
 #include "InsertionSort.h"
 #include "ShellSort.h"
 #include "QuickSort.h"
 #include "MergeSort.h"
 #include "HeapSort.h"
+#include "LeituraArquivo.h"
+#include "GameReview.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -58,7 +60,12 @@ void randomVector(int vet[], int n)
     }
 }
 
-void Menu(int vet[],int n)
+void MenuInt(int vet[], int n)
+{
+
+}
+
+void MenuGameReview(GameReview vet[],int n)
 {
     int option = -1;
 
@@ -88,13 +95,13 @@ void Menu(int vet[],int n)
     case 2:
         {
             HeapSort hs;
-            hs.heapSort(vet,n);
+            //hs.heapSort(vet,n);
             break;
         }
     case 3:
         {
             MergeSort ms;
-            ms.mergeSort(vet, 0, n);
+            //ms.mergeSort(vet, 0, n);
             break;
 
         }
@@ -108,24 +115,24 @@ void Menu(int vet[],int n)
     case 5:
         {
             QuickSort qs;
-            qs.quickSortMediana(vet, 0, n -1, 5);
+            //qs.quickSortMediana(vet, 0, n -1, 5);
             break;
         }
 
     case 6:
         {
             QuickSort qs;
-            qs.quickSortInsercao(vet, 0, n -1, 10);
+            //qs.quickSortInsercao(vet, 0, n -1, 10);
             break;
         }
     case 7:
         {
             ShellSort ss;
-            ss.shellSort(vet, n);
+            //ss.shellSort(vet, n);
             break;
         }
 
-    case 0:
+    default:
         exit(1);
         break;
     }
@@ -136,13 +143,21 @@ int main()
 {
     cout << "Escolha o tamanho do vetor: " << endl;
     int n = 0;
-    cin >> n;
-    int vet[n];
-    randomVector(vet, n);
-    cout << "Vetor: " << endl;
-    print(vet,n);
-    Menu(vet, n);
-    print(vet,n);
+	cin >> n;
+
+	LeituraArquivo arquivo("bgg-13m-reviews.csv");
+	GameReview* Reviews = arquivo.RandomRead(n);
+	for (int i = 0; i < n; i++)
+	{
+		Reviews[i].PrintMainInfo();
+	}
+
+    MenuGameReview(Reviews, n);
+
+	for (int i = 0; i < n; i++)
+	{
+		Reviews[i].PrintMainInfo();
+	}
 
     return 0;
 }

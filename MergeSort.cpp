@@ -36,7 +36,10 @@ void MergeSort::Intercalacao(int vet[], int indiceEsq, int indiceMed, int indice
     int tam1 = indiceMed - indiceEsq + 1;
     int tam2 =  indiceDir - indiceMed;
 
-    int vetEsq[tam1], vetDir[tam2];
+    //int vetEsq[tam1], vetDir[tam2];
+	int *vetEsq, *vetDir;
+	vetEsq = (int*)malloc(tam1 * sizeof(int));
+	vetDir = (int*)malloc(tam2 * sizeof(int));
 
     for (i = 0; i < tam1; i++)
         vetEsq[i] = vet[indiceEsq + i];

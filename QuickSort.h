@@ -4,6 +4,8 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "GameReview.h"
+
 using namespace std;
 
 class QuickSort
@@ -14,6 +16,7 @@ class QuickSort
 
         void inicializa();
         void quickSort(int arr[], int inicio, int fim);
+        void quickSort(GameReview arr[], int inicio, int fim);
         void quickSortMediana(int arr[], int inicio, int fim, int k);
         int mediana(int arr[], int inicio, int fim, int k);
         void quickSortInsercao(int arr[], int inicio, int fim, int m);
@@ -21,6 +24,7 @@ class QuickSort
 
     private:
         int particionar(int arr[], int inicio, int fim);
+        int particionar(GameReview arr[], int inicio, int fim);
         int particionarMediana(int arr[], int inicio, int fim, int mediana);
         int particionarInsercao(int arr[], int inicio, int fim);
 };
