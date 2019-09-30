@@ -36,6 +36,21 @@ void swap(int *x, int *y)
 }
 
 /**
+ * Fun��o que troca o valor de dois objetos usando uma
+ * vari�vel auxiliar
+ *
+ * @param GameReview *x
+ * @param GameReview *y
+ * @return void
+*/
+void swap(GameReview* x, GameReview* y)
+{
+	GameReview aux = *x;
+	*x = *y;
+	*y = aux;
+}
+
+/**
  * Imprime na tela um array
  * @return void
 */
@@ -60,12 +75,7 @@ void randomVector(int vet[], int n)
     }
 }
 
-void MenuInt(int vet[], int n)
-{
-
-}
-
-void MenuGameReview(GameReview vet[],int n)
+void Menu(GameReview vet[], int n)
 {
     int option = -1;
 
@@ -95,13 +105,13 @@ void MenuGameReview(GameReview vet[],int n)
     case 2:
         {
             HeapSort hs;
-            //hs.heapSort(vet,n);
+            hs.heapSort(vet,n);
             break;
         }
     case 3:
         {
             MergeSort ms;
-            //ms.mergeSort(vet, 0, n);
+            ms.mergeSort(vet, 0, n-1);
             break;
 
         }
@@ -115,20 +125,20 @@ void MenuGameReview(GameReview vet[],int n)
     case 5:
         {
             QuickSort qs;
-            //qs.quickSortMediana(vet, 0, n -1, 5);
+            qs.quickSortMediana(vet, 0, n -1, 5);
             break;
         }
 
     case 6:
         {
             QuickSort qs;
-            //qs.quickSortInsercao(vet, 0, n -1, 10);
+            qs.quickSortInsercao(vet, 0, n -1, 10);
             break;
         }
     case 7:
         {
             ShellSort ss;
-            //ss.shellSort(vet, n);
+            ss.shellSort(vet, n);
             break;
         }
 
@@ -147,12 +157,13 @@ int main()
 
 	LeituraArquivo arquivo("bgg-13m-reviews.csv");
 	GameReview* Reviews = arquivo.RandomRead(n);
+	//GameReview* Reviews2 = arquivo.RandomRead(n);
 	for (int i = 0; i < n; i++)
 	{
 		Reviews[i].PrintMainInfo();
 	}
 
-    MenuGameReview(Reviews, n);
+    Menu(Reviews, n);
 
 	for (int i = 0; i < n; i++)
 	{

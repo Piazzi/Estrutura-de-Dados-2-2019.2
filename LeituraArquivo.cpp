@@ -2,16 +2,16 @@
 
 LeituraArquivo::LeituraArquivo()
 {
+	srand(time(NULL));
 }
 
-LeituraArquivo::LeituraArquivo(string nomeArquivo)
+LeituraArquivo::LeituraArquivo(string nomeArquivo) : LeituraArquivo()
 {
 	this->nomeArquivo = nomeArquivo;
 }
 
 LeituraArquivo::~LeituraArquivo()
-{
-}
+{ }
 
 void LeituraArquivo::SetNomeArquivo(string nomeArquivo)
 {
@@ -30,17 +30,15 @@ GameReview* LeituraArquivo::RandomRead(int qntdeLinhas)
 	{
 		arquivo.seekg(0, ios::end); // move o ponteiro para o final da stream do arquivo
 		int tamanhoArquivo = arquivo.tellg(); // tamanho do arquivo
-		
-		time_t rawtime; // semente para geracao de numero aleatorio
-		srand(time(&rawtime));
 
 		for (int i = 0; i < qntdeLinhas; i++)
 		{
 			// obtem um valor aleatorio entre 1 e o tamanho do arquivo
-			std::mt19937 mt(time(&rawtime) + i);
-			std::uniform_int_distribution<int> linear_i(1, tamanhoArquivo);
+			mt19937 mt(rand());
+			uniform_int_distribution<int> linear_i(0, tamanhoArquivo);
 			int aleatorio = linear_i(mt);
 
+			//int aleatorio = rand() % tamanhoArquivo;
 			// vai para uma posição aleatória do arquivo e ajusta para  começo da próxima linha
 			arquivo.seekg(aleatorio, ios::beg);
 			string strAux;
@@ -82,6 +80,7 @@ GameReview LeituraArquivo::ParseLine(string registro)
 		else if (i == 5) // se i == 5 então é o último valor a ser lido e não haverá uma vírgula após o valor
 		{
 			ColunasCsv[i] = string(InicioColuna); // armazena a string de caracteres desde o apontado por InicioColuna até o final da linha
+			break;
 		}
 	}
 

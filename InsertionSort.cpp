@@ -4,7 +4,7 @@ void InsertionSort::insertionSort(int vet[], int TAM)
 {
     for (int i = 1; i <= TAM; i++)
     {
-        int valorAtual = vet[i];
+        int valorAtual = vet[i]; // variável não está sendo utilizada
 
         for (int j = i - 1; j != 0 && vet[j - 1] > vet[j]; j--)
         {
@@ -17,13 +17,13 @@ void InsertionSort::insertionSort(int vet[], int TAM)
 
 void InsertionSort::insertionSort(GameReview vet[], int TAM)
 {
-	for (int i = 0; i < TAM; i++)
+	for (int i = 1; i < TAM; i++)
 	{
-		int valorAtual = vet[i].GetInternalId();
+		int valorAtual = vet[i].GetInternalId(); // variável não está sendo utilizada
 
-		for (int j = i; j != 0 && vet[j + 1].GetInternalId() > vet[j].GetInternalId(); j--)
+		for (int j = i; j != 0 && vet[j - 1].GetInternalId() > vet[j].GetInternalId(); j--)
 		{
-			swap(vet[j], vet[j + 1]);
+			swap(vet[j], vet[j - 1]);
 			numCopias += 3;
 		}
 		numComparacoes++;

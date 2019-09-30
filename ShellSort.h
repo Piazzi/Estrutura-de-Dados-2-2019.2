@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <chrono>
 
+#include "GameReview.h"
+
 using namespace std;
 
 class ShellSort
@@ -13,6 +15,7 @@ class ShellSort
         int numComparacoes = 0;
         int numCopias = 0;
         void shellSort(int vet[], int tam);
+        void shellSort(GameReview vet[], int tam);
 };
 
 
