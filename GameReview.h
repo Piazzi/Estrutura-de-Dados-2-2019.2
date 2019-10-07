@@ -2,8 +2,8 @@
 #define __GAMEREVIEW_H__
 #include <iostream>
 #include <sstream>
-#include <string> 
-//#include <cstdlib> 
+#include <string>
+//#include <cstdlib>
 using namespace std;
 
 class GameReview
@@ -14,17 +14,19 @@ public:
 
 	~GameReview();
 
-	string GetIndex();
+	int GetIndex();
 	string GetUserName();
 	string GetRating();
 	string GetComment();
 	int GetInternalId();
 	string GetGameName();
 
+
 	void SetInfo(string index, string userName, string rating, string comment, string internalId, string gameName);
 	void PrintInfo();
 	void PrintMainInfo();
 	void PrintInternalId();
+	void PrintIndex();
 
 private:
 	string Index;

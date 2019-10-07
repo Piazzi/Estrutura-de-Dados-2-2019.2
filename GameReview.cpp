@@ -2,6 +2,7 @@
 
 GameReview::GameReview()
 {
+    Index="-1";   //Mostra que está vazio
 }
 
 GameReview::GameReview(string index, string userName, string rating, string comment, string internalId, string gameName)
@@ -13,9 +14,12 @@ GameReview::~GameReview()
 {
 }
 
-string GameReview::GetIndex()
+int GameReview::GetIndex()
 {
-	return Index;
+	int number;
+	istringstream iss(Index);
+	iss >> number;
+	return number;;
 }
 
 string GameReview::GetUserName()
@@ -75,5 +79,10 @@ void GameReview::PrintMainInfo()
 void GameReview::PrintInternalId()
 {
 	cout << "Internal Id:" << InternalId << endl;
+}
+
+void GameReview::PrintIndex()
+{
+	cout << "Index: " << Index << endl;
 }
 
