@@ -18,6 +18,31 @@ void LeituraArquivo::SetNomeArquivo(string nomeArquivo)
 	this->nomeArquivo = nomeArquivo;
 }
 
+int* LeituraArquivo::LerEntrada()
+{
+	arquivo.open("entrada.txt");
+	int* entradas = new int[5];
+
+	if (arquivo.is_open())
+	{
+		arquivo.seekg(0, ios::beg);
+		int i = 0;
+		while (!arquivo.eof() || i < 5)
+		{
+			string aux;
+			getline(arquivo, aux, '\n');
+			entradas[i] = stoi(aux);
+			i++;
+		}
+	}
+	else
+	{
+		cerr << "Erro: Nao conseguiu abrir o arquivo entrada.txt" << endl;
+	}
+	arquivo.close();
+	return entradas;
+}
+
 GameReview* LeituraArquivo::RandomRead(int qntdeLinhas)
 {
 	GameReview* registros = new GameReview[qntdeLinhas];
@@ -54,10 +79,52 @@ GameReview* LeituraArquivo::RandomRead(int qntdeLinhas)
 	}
 	else
 	{
-		cout << "Erro: Nao conseguiu abrir o arquivo" << endl;
+		cerr << "Erro: Nao conseguiu abrir o arquivo" << endl;
 	}
 	arquivo.close();
 	return registros;
+}
+
+int* LeituraArquivo::RandomReadIds(int qntdeLinhas)
+{
+	int* ids = new int[qntdeLinhas];
+	if (nomeArquivo.empty())
+		cerr << "Erro: O nome do arquivo não foi especificado." << endl;
+	else
+		arquivo.open(nomeArquivo); 		// Abre o arquivo de acordo com o nome do diretório e do arquivo
+
+	if (arquivo.is_open())
+	{
+		arquivo.seekg(0, ios::end); // move o ponteiro para o final da stream do arquivo
+		int tamanhoArquivo = arquivo.tellg(); // tamanho do arquivo
+
+		for (int i = 0; i < qntdeLinhas; i++)
+		{
+			// obtem um valor aleatorio entre 1 e o tamanho do arquivo
+			mt19937 mt(rand());
+			uniform_int_distribution<int> linear_i(0, tamanhoArquivo);
+			int aleatorio = linear_i(mt);
+
+			//int aleatorio = rand() % tamanhoArquivo;
+			// vai para uma posição aleatória do arquivo e ajusta para  começo da próxima linha
+			arquivo.seekg(aleatorio, ios::beg);
+			string strAux;
+			getline(arquivo, strAux, '\n');
+			if (arquivo.eof())
+				continue;
+
+			// Armazena o conteudo da linha na variável registro
+			string registro;
+			getline(arquivo, registro, ',');
+			ids[i] = stoi(registro); // Transforma a linha csv em um objeto do tipo GameReview
+		}
+	}
+	else
+	{
+		cerr << "Erro: Nao conseguiu abrir o arquivo" << endl;
+	}
+	arquivo.close();
+	return ids;
 }
 
 //Esta função recebe como parâmetro as informações do review do jogo em formato csv e converte as informações em um objeto GameReview

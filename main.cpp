@@ -75,6 +75,47 @@ void randomVector(int vet[], int n)
     }
 }
 
+void Cenario1() 
+{
+	cout << endl << "Cenario 1: Impacto de diferentes estruturas de dados." << endl;
+	cout << "Avaliando o desempenho do metodo de ordenacao QuickSort..." << endl << endl;
+	LeituraArquivo entrada("bgg-13m-reviews.csv");
+	int* entradas = entrada.LerEntrada();
+	cout << "inteiros armazenados em um vetor de tamanho N..." << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "N = " << entradas[i] << endl;
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << "Conjunto " << j << ": " << endl;
+			int* ids = entrada.RandomReadIds(entradas[i]);
+			QuickSort qs;
+			qs.quickSort(ids, entradas[i]);
+			cout << "Numero de comparacoes: " << qs.numComparacoes << endl;
+			cout << "Numero de Copias: " << qs.numCopias << endl;
+			cout << "Tempo de Execucao: " << qs.tempoExecucao << " nanosegundos" << endl;
+			cout << endl;
+		}
+	}
+
+	cout << "registros / objetos armazenados em um vetor de tamanho N..." << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "N = " << entradas[i] << endl;
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << "Conjunto " << j << ": " << endl;
+			GameReview* registros = entrada.RandomRead(entradas[i]);
+			QuickSort qs;
+			qs.quickSort(registros, entradas[i]);
+			cout << "Numero de comparacoes: " << qs.numComparacoes << endl;
+			cout << "Numero de Copias: " << qs.numCopias << endl;
+			cout << "Tempo de Execucao: " << qs.tempoExecucao << " nanosegundos" << endl;
+			cout << endl;
+		}
+	}
+}
+
 void Menu(GameReview vet[], int n)
 {
     int option = -1;
@@ -119,7 +160,7 @@ void Menu(GameReview vet[], int n)
     case 4:
         {
             QuickSort qs;
-            qs.quickSort(vet,0, n-1);
+            qs.quickSort(vet, n);
             break;
         }
     case 5:
@@ -151,24 +192,29 @@ void Menu(GameReview vet[], int n)
 
 int main()
 {
-    cout << "Escolha o tamanho do vetor: " << endl;
-    int n = 0;
-	cin >> n;
+ //   cout << "Escolha o tamanho do vetor: " << endl;
+ //   int n = 0;
+	//cin >> n;
 
-	LeituraArquivo arquivo("bgg-13m-reviews.csv");
-	GameReview* Reviews = arquivo.RandomRead(n);
-	//GameReview* Reviews2 = arquivo.RandomRead(n);
-	for (int i = 0; i < n; i++)
-	{
-		Reviews[i].PrintMainInfo();
-	}
+	//LeituraArquivo arquivo("bgg-13m-reviews.csv");
+	//int* valores = arquivo.LerEntrada();
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	cout << valores[i] << endl;
+	//}
+	//GameReview* Reviews = arquivo.RandomRead(n);
+	////GameReview* Reviews2 = arquivo.RandomRead(n);
+	//for (int i = 0; i < n; i++)
+	//{
+	//	Reviews[i].PrintMainInfo();
+	//}
 
-    Menu(Reviews, n);
+ //   Menu(Reviews, n);
 
-	for (int i = 0; i < n; i++)
-	{
-		Reviews[i].PrintMainInfo();
-	}
-
+	//for (int i = 0; i < n; i++)
+	//{
+	//	Reviews[i].PrintMainInfo();
+	//}
+	Cenario1();
     return 0;
 }

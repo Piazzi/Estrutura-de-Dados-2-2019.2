@@ -58,7 +58,7 @@ void ShellSort::shellSort(GameReview vet[], int tam)
 
             // compara o elementos da lacuna e faz a troca dos elementos quando necessaria
             numComparacoes++;
-            for (j = i; j >= lacuna && vet[j - lacuna].GetInternalId() > pivo.GetInternalId(); j -= lacuna)
+            for (j = i; j >= lacuna && vet[j - lacuna].GetIndex() > pivo.GetIndex(); j -= lacuna)
             {
                 vet[j] = vet[j-lacuna];
                 numCopias++;

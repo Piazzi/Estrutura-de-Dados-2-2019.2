@@ -141,7 +141,7 @@ void MergeSort::Intercalacao(GameReview vet[], int indiceEsq, int indiceMed, int
     while (i < tam1 && j < tam2)
     {
         numComparacoes++;
-        if (vetEsq[i].GetInternalId() <= vetDir[j].GetInternalId())
+        if (vetEsq[i].GetIndex() <= vetDir[j].GetIndex())
         {
             vet[k] = vetEsq[i];
             numCopias++;

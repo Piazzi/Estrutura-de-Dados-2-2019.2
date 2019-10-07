@@ -16,6 +16,8 @@ public:
 	~LeituraArquivo();
 
 	GameReview* RandomRead(int qntdeLinhas);
+	int* RandomReadIds(int qntdeLinhas);
+	int* LerEntrada();
 
 	void SetNomeArquivo(string nomeArquivo);
 

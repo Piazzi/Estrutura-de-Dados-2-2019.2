@@ -14,7 +14,7 @@ public:
 
 	~GameReview();
 
-	string GetIndex();
+	int GetIndex();
 	string GetUserName();
 	string GetRating();
 	string GetComment();

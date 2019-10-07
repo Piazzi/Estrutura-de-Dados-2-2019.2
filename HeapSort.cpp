@@ -88,11 +88,11 @@ void HeapSort::heapify(GameReview arr[], int n, int i)
     int r = 2*i + 2;
 
     numComparacoes++;
-    if (l < n && arr[l].GetInternalId() > arr[maior].GetInternalId())
+    if (l < n && arr[l].GetIndex() > arr[maior].GetIndex())
         maior = l;
 
     numComparacoes++;
-    if (r < n && arr[r].GetInternalId() > arr[maior].GetInternalId())
+    if (r < n && arr[r].GetIndex() > arr[maior].GetIndex())
         maior = r;
 
     if (maior != i)

@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <Chrono>
+#include <time.h>
 
 #include "GameReview.h"
 
@@ -13,10 +15,13 @@ class QuickSort
     public:
         int numComparacoes = 0;
         int numCopias = 0;
+		volatile long long tempoExecucao;
 
         void inicializa();
-        void quickSort(int arr[], int inicio, int fim);
-        void quickSort(GameReview arr[], int inicio, int fim);
+        void quickSort(int arr[], int tam);
+        void auxQuickSort(int arr[], int inicio, int fim);
+        void quickSort(GameReview arr[], int tam);
+        void auxQuickSort(GameReview arr[], int inicio, int fim);
         void quickSortMediana(int arr[], int inicio, int fim, int k);
         void quickSortMediana(GameReview arr[], int inicio, int fim, int k);
         int mediana(int arr[], int inicio, int fim, int k);

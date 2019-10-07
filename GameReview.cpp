@@ -13,9 +13,12 @@ GameReview::~GameReview()
 {
 }
 
-string GameReview::GetIndex()
+int GameReview::GetIndex()
 {
-	return Index;
+	int number;
+	istringstream iss(Index);
+	iss >> number;
+	return number;
 }
 
 string GameReview::GetUserName()

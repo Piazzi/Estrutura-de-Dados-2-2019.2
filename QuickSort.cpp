@@ -35,7 +35,7 @@ int QuickSort::particionar(int arr[], int inicio, int fim)
 
 int QuickSort::particionar(GameReview arr[], int inicio, int fim)
 {
-    int pivo = arr[fim].GetInternalId();
+    int pivo = arr[fim].GetIndex();
     numCopias++;
 
     int i = (inicio - 1);
@@ -43,7 +43,7 @@ int QuickSort::particionar(GameReview arr[], int inicio, int fim)
     for (int j = inicio; j <= fim - 1; j++)
     {
         numComparacoes++;
-        if (arr[j].GetInternalId() <= pivo)
+        if (arr[j].GetIndex() <= pivo)
         {
             i++;
             swap(arr[i], arr[j]);
@@ -66,26 +66,42 @@ int QuickSort::particionar(GameReview arr[], int inicio, int fim)
  * @param int fim
  * @return void
 */
-void QuickSort::quickSort(int arr[], int inicio, int fim)
+void QuickSort::auxQuickSort(int arr[], int inicio, int fim)
 {
     if (inicio < fim)
     {
         int pi = particionar(arr, inicio, fim);
 
-        quickSort(arr, inicio, pi - 1);
-        quickSort(arr, pi + 1, fim);
+        auxQuickSort(arr, inicio, pi - 1);
+        auxQuickSort(arr, pi + 1, fim);
     }
 }
 
-void QuickSort::quickSort(GameReview arr[], int inicio, int fim)
+void QuickSort::quickSort(int arr[], int tam)
 {
-    if (inicio < fim)
-    {
-        int pi = particionar(arr, inicio, fim);
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSort(arr, 0, tam - 1);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
 
-        quickSort(arr, inicio, pi - 1);
-        quickSort(arr, pi + 1, fim);
-    }
+void QuickSort::quickSort(GameReview arr[], int tam)
+{
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSort(arr, 0, tam - 1);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
+
+void QuickSort::auxQuickSort(GameReview arr[], int inicio, int fim)
+{
+	if (inicio < fim)
+	{
+		int pi = particionar(arr, inicio, fim);
+
+		auxQuickSort(arr, inicio, pi - 1);
+		auxQuickSort(arr, pi + 1, fim);
+	}
 }
 
 
@@ -186,7 +202,7 @@ int QuickSort::mediana(GameReview arr[], int inicio, int fim, int k)
     }
 
     is.insertionSortHibrido(vetor, 0, k);
-    indiceMediana = vetor[k == 3 ? 1 : 2].GetInternalId();
+    indiceMediana = vetor[k == 3 ? 1 : 2].GetIndex();
     return indiceMediana;
 }
 
@@ -241,7 +257,7 @@ int QuickSort::particionarMediana(int arr[], int inicio, int fim,int mediana)
 int QuickSort::particionarMediana(GameReview arr[], int inicio, int fim,int mediana)
 {
     int pospiv = inicio + (mediana % (fim - inicio + 1));
-    int pivo = arr[pospiv].GetInternalId(); //Pega o userID da posicao que foi pedida e coloca ela como pivo
+    int pivo = arr[pospiv].GetIndex(); //Pega o userID da posicao que foi pedida e coloca ela como pivo
     numCopias++;
 
     swap(arr[pospiv], arr[fim]);
@@ -253,7 +269,7 @@ int QuickSort::particionarMediana(GameReview arr[], int inicio, int fim,int medi
     for (j = inicio; j <= fim - 1; j++)
     {
         numComparacoes++;
-        if (arr[j].GetInternalId() <= pivo)
+        if (arr[j].GetIndex() <= pivo)
         {
             i++;
             swap(arr[i], arr[j]);

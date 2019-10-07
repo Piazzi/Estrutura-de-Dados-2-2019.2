@@ -498,6 +498,8 @@ MigrationBackup/
 # End of https://www.gitignore.io/api/c++,code,clion,netbeans,visualstudio,visualstudiocode
 
 bgg-13m-reviews.csv
+entrada.txt
+saida.txt
 TRabalhoEDII.sln
 TRabalhoEDII.vcxproj
 TRabalhoEDII.vcxproj.filters
