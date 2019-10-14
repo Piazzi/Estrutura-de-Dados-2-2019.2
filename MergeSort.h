@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 
+#include "GameReview.h"
 using namespace std;
 
 class MergeSort
@@ -13,9 +14,11 @@ class MergeSort
         int numCopias = 0;
 
         void mergeSort(int vet[], int indiceEsq, int indiceDir);
+        void mergeSort(GameReview vet[], int indiceEsq, int indiceDir);
 
     private:
         void Intercalacao(int vet[], int indiceEsq, int indiceMed, int indiceDir);
+        void Intercalacao(GameReview vet[], int indiceEsq, int indiceMed, int indiceDir);
 };
 
 #endif // MERGESORT_H_INCLUDED
