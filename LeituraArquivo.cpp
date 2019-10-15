@@ -27,7 +27,7 @@ int* LeituraArquivo::LerEntrada()
 	{
 		arquivo.seekg(0, ios::beg);
 		int i = 0;
-		while (!arquivo.eof() || i < 5)
+		while (!arquivo.eof())
 		{
 			string aux;
 			getline(arquivo, aux, '\n');

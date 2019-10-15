@@ -12,6 +12,7 @@
 #include "HeapSort.h"
 #include "LeituraArquivo.h"
 #include "GameReview.h"
+#include "SaidaArquivo.h"
 
 using namespace std;
 using namespace std::chrono;
@@ -77,44 +78,37 @@ void randomVector(int vet[], int n)
 
 void Cenario1() 
 {
-	cout << endl << "Cenario 1: Impacto de diferentes estruturas de dados." << endl;
-	cout << "Avaliando o desempenho do metodo de ordenacao QuickSort..." << endl << endl;
+	cout << "Cenario 1: Impacto de diferentes estruturas de dados." << endl;
+	SaidaArquivo saida("saida.txt");
 	LeituraArquivo entrada("bgg-13m-reviews.csv");
+
+	saida.WriteLine("Cenario1");
 	int* entradas = entrada.LerEntrada();
-	cout << "inteiros armazenados em um vetor de tamanho N..." << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "N = " << entradas[i] << endl;
+		saida.WriteLine(entradas[i]);
 		for (int j = 1; j <= 5; j++)
 		{
-			cout << "Conjunto " << j << ": " << endl;
 			int* ids = entrada.RandomReadIds(entradas[i]);
 			QuickSort qs;
 			qs.quickSort(ids, entradas[i]);
-			cout << "Numero de comparacoes: " << qs.numComparacoes << endl;
-			cout << "Numero de Copias: " << qs.numCopias << endl;
-			cout << "Tempo de Execucao: " << qs.tempoExecucao << " nanosegundos" << endl;
-			cout << endl;
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
-
-	cout << "registros / objetos armazenados em um vetor de tamanho N..." << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "N = " << entradas[i] << endl;
+		saida.WriteLine(entradas[i]);
 		for (int j = 1; j <= 5; j++)
 		{
-			cout << "Conjunto " << j << ": " << endl;
 			GameReview* registros = entrada.RandomRead(entradas[i]);
 			QuickSort qs;
 			qs.quickSort(registros, entradas[i]);
-			cout << "Numero de comparacoes: " << qs.numComparacoes << endl;
-			cout << "Numero de Copias: " << qs.numCopias << endl;
-			cout << "Tempo de Execucao: " << qs.tempoExecucao << " nanosegundos" << endl;
-			cout << endl;
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
 }
+
+
 
 void Menu(GameReview vet[], int n)
 {
