@@ -21,6 +21,8 @@ public:
 
 	void SetNomeArquivo(string nomeArquivo);
 
+	void SaidaCenario1();
+
 private:
 	GameReview ParseLine(string registro);
 	const string DIRETORIO = "arquivos/";

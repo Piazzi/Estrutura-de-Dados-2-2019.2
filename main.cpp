@@ -84,35 +84,54 @@ void Cenario1()
 
 	saida.WriteLine("Cenario1");
 	int* tamanhos = leitura.LerEntrada();
+
+	cout << "vetor de inteiros de tamanho N..." << endl;
 	for (int i = 0; i < 5; i++)
 	{
+		cout << "N = " << tamanhos[i]  << "          "<< "\t\r" << flush;
 		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
 			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
 			QuickSort qs;
 			qs.quickSort(ids, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
+	cout << "\033[F";
+	cout << "vetor de objetos de tamanho N... " << endl;
 	for (int i = 0; i < 5; i++)
 	{
+		cout << "N = " << tamanhos[i] << "          " << "\t\r" << flush;
 		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
 			GameReview* registros = leitura.RandomRead(tamanhos[i]);
+
 			QuickSort qs;
 			qs.quickSort(registros, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
+	cout << "                                               ";
 
+	cout << "\033[F";
+	cout << "                                               ";
+
+	cout << "\033[F";
 	saida.Close();
+
+	cout << "\033[F";
+	cout << "                                                  ";
+	cout << "\033[F";
+	cout << "fim Cenario 1.                                              " << "\t\r" << flush;
 }
 
 void Cenario2()
 {
-	
+	cout << "Cenario 2         " << endl;
+
 }
 
 
@@ -193,29 +212,10 @@ void Menu(GameReview vet[], int n)
 
 int main()
 {
- //   cout << "Escolha o tamanho do vetor: " << endl;
- //   int n = 0;
-	//cin >> n;
-
-	//LeituraArquivo arquivo("bgg-13m-reviews.csv");
-	//int* valores = arquivo.LerEntrada();
-	//for (int i = 0; i < 5; i++)
-	//{
-	//	cout << valores[i] << endl;
-	//}
-	//GameReview* Reviews = arquivo.RandomRead(n);
-	////GameReview* Reviews2 = arquivo.RandomRead(n);
-	//for (int i = 0; i < n; i++)
-	//{
-	//	Reviews[i].PrintMainInfo();
-	//}
-
- //   Menu(Reviews, n);
-
-	//for (int i = 0; i < n; i++)
-	//{
-	//	Reviews[i].PrintMainInfo();
-	//}
 	Cenario1();
+	Cenario2();
+	//Cenario3();
+	//Cenario4();
+	//EstatisticasDeDesempenho();
     return 0;
 }

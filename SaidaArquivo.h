@@ -12,9 +12,10 @@ public:
 	SaidaArquivo(string nomeArquivo, bool appendFile);
 	~SaidaArquivo();
 
-	void SetNomeArquivo(string nomeArquivo);
 	template <typename T>
 	void WriteLine(T linha);
+
+	void SetNomeArquivo(string nomeArquivo);
 	void WriteResult(int numComparacoes, int numCopias, long long tempoExecucao);
 	void Open();
 	void Append();

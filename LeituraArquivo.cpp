@@ -43,6 +43,11 @@ int* LeituraArquivo::LerEntrada()
 	return entradas;
 }
 
+void LeituraArquivo::SaidaCenario1()
+{
+
+}
+
 GameReview* LeituraArquivo::RandomRead(int qntdeLinhas)
 {
 	GameReview* registros = new GameReview[qntdeLinhas];
@@ -79,7 +84,7 @@ GameReview* LeituraArquivo::RandomRead(int qntdeLinhas)
 	}
 	else
 	{
-		cerr << "Erro: Nao conseguiu abrir o arquivo" << endl;
+		cerr << "Erro: Nao conseguiu abrir o arquivo " << nomeArquivo << endl;
 	}
 	arquivo.close();
 	return registros;
@@ -121,7 +126,7 @@ int* LeituraArquivo::RandomReadIds(int qntdeLinhas)
 	}
 	else
 	{
-		cerr << "Erro: Nao conseguiu abrir o arquivo" << endl;
+		cerr << "Erro: Nao conseguiu abrir o arquivo " << nomeArquivo << endl;
 	}
 	arquivo.close();
 	return ids;
