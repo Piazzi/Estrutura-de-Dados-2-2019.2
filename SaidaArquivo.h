@@ -9,6 +9,7 @@ class SaidaArquivo
 public:
 	SaidaArquivo();
 	SaidaArquivo(string nomeArquivo);
+	SaidaArquivo(string nomeArquivo, bool appendFile);
 	~SaidaArquivo();
 
 	void SetNomeArquivo(string nomeArquivo);
@@ -16,6 +17,7 @@ public:
 	void WriteLine(T linha);
 	void WriteResult(int numComparacoes, int numCopias, volatile long long tempoExecucao);
 	void Open();
+	void Append();
 	void Close();
 	
 

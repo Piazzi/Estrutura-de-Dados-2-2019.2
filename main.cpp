@@ -108,6 +108,11 @@ void Cenario1()
 	}
 }
 
+void Cenario2()
+{
+	
+}
+
 
 
 void Menu(GameReview vet[], int n)
