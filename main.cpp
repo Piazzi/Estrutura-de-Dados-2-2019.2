@@ -80,32 +80,34 @@ void Cenario1()
 {
 	cout << "Cenario 1: Impacto de diferentes estruturas de dados." << endl;
 	SaidaArquivo saida("saida.txt");
-	LeituraArquivo entrada("bgg-13m-reviews.csv");
+	LeituraArquivo leitura("bgg-13m-reviews.csv");
 
 	saida.WriteLine("Cenario1");
-	int* entradas = entrada.LerEntrada();
+	int* tamanhos = leitura.LerEntrada();
 	for (int i = 0; i < 5; i++)
 	{
-		saida.WriteLine(entradas[i]);
+		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
-			int* ids = entrada.RandomReadIds(entradas[i]);
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
 			QuickSort qs;
-			qs.quickSort(ids, entradas[i]);
+			qs.quickSort(ids, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
 	for (int i = 0; i < 5; i++)
 	{
-		saida.WriteLine(entradas[i]);
+		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
-			GameReview* registros = entrada.RandomRead(entradas[i]);
+			GameReview* registros = leitura.RandomRead(tamanhos[i]);
 			QuickSort qs;
-			qs.quickSort(registros, entradas[i]);
+			qs.quickSort(registros, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
 	}
+
+	saida.Close();
 }
 
 void Cenario2()

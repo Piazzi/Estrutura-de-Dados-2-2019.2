@@ -15,7 +15,7 @@ public:
 	void SetNomeArquivo(string nomeArquivo);
 	template <typename T>
 	void WriteLine(T linha);
-	void WriteResult(int numComparacoes, int numCopias, volatile long long tempoExecucao);
+	void WriteResult(int numComparacoes, int numCopias, long long tempoExecucao);
 	void Open();
 	void Append();
 	void Close();

@@ -61,6 +61,9 @@ void SaidaArquivo::Append()
 
 void SaidaArquivo::Close()
 {
-	arquivo.close();
-	cout << "stream for " << nomeArquivo << " closed" << endl;
+	if (arquivo.is_open())
+	{
+		arquivo.close();
+		cout << "stream for " << nomeArquivo << " closed" << endl;
+	}
 }
