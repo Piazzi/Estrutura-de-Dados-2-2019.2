@@ -117,12 +117,20 @@ void QuickSort::auxQuickSort(GameReview arr[], int inicio, int fim)
 */
 void QuickSort::quickSortMediana(int arr[], int inicio, int fim, int k)
 {
-    if (inicio < fim)
-    {
-        int q = particionarMediana(arr, inicio, fim, mediana(arr, inicio, fim, k));
-        quickSortMediana(arr, inicio, q - 1, k);
-        quickSortMediana(arr, q + 1, fim, k);
-    }
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSortMediana(arr, inicio, fim, k);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
+
+void QuickSort::auxQuickSortMediana(int arr[], int inicio, int fim, int k)
+{
+	if (inicio < fim)
+	{
+		int q = particionarMediana(arr, inicio, fim, mediana(arr, inicio, fim, k));
+		auxQuickSortMediana(arr, inicio, q - 1, k);
+		auxQuickSortMediana(arr, q + 1, fim, k);
+	}
 }
 
 /**
@@ -137,12 +145,20 @@ void QuickSort::quickSortMediana(int arr[], int inicio, int fim, int k)
 */
 void QuickSort::quickSortMediana(GameReview arr[], int inicio, int fim, int k)
 {
-    if (inicio < fim)
-    {
-        int q = particionarMediana(arr, inicio, fim, mediana(arr, inicio, fim, k));
-        quickSortMediana(arr, inicio, q - 1, k);
-        quickSortMediana(arr, q + 1, fim, k);
-    }
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSortMediana(arr, inicio, fim, k);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
+
+void QuickSort::auxQuickSortMediana(GameReview arr[], int inicio, int fim, int k)
+{
+	if (inicio < fim)
+	{
+		int q = particionarMediana(arr, inicio, fim, mediana(arr, inicio, fim, k));
+		auxQuickSortMediana(arr, inicio, q - 1, k);
+		auxQuickSortMediana(arr, q + 1, fim, k);
+	}
 }
 
 /**
@@ -294,36 +310,44 @@ int QuickSort::particionarMediana(GameReview arr[], int inicio, int fim,int medi
 */
 void QuickSort::quickSortInsercao(int arr[], int inicio, int fim, int m)
 {
-    InsertionSort is = InsertionSort();
-    if (inicio < fim)
-    {
-        if(m = 10)
-        {
-            if (fim - inicio <= 10)
-            {
-                is.insertionSortHibrido(arr, inicio, fim + 1);
-            }
-            else
-            {
-                int part = particionar(arr, inicio, fim);
-                quickSortInsercao(arr, inicio, part - 1, 10);
-                quickSortInsercao(arr, part + 1, fim, 10);
-            }
-        }
-        else
-        {
-            if (fim - inicio <= 100)
-            {
-                is.insertionSortHibrido(arr, inicio, fim + 1);
-            }
-            else
-            {
-                int part = particionar(arr, inicio, fim);
-                quickSortInsercao(arr, inicio, part - 1, 100);
-                quickSortInsercao(arr, part + 1, fim, 100);
-            }
-        }
-    }
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSortInsercao(arr, inicio, fim, m);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
+
+void QuickSort::auxQuickSortInsercao(int arr[], int inicio, int fim, int m)
+{
+	InsertionSort is = InsertionSort();
+	if (inicio < fim)
+	{
+		if (m = 10)
+		{
+			if (fim - inicio <= 10)
+			{
+				is.insertionSortHibrido(arr, inicio, fim + 1);
+			}
+			else
+			{
+				int part = particionar(arr, inicio, fim);
+				auxQuickSortInsercao(arr, inicio, part - 1, 10);
+				auxQuickSortInsercao(arr, part + 1, fim, 10);
+			}
+		}
+		else
+		{
+			if (fim - inicio <= 100)
+			{
+				is.insertionSortHibrido(arr, inicio, fim + 1);
+			}
+			else
+			{
+				int part = particionar(arr, inicio, fim);
+				auxQuickSortInsercao(arr, inicio, part - 1, 100);
+				auxQuickSortInsercao(arr, part + 1, fim, 100);
+			}
+		}
+	}
 }
 
 /**
@@ -338,34 +362,42 @@ void QuickSort::quickSortInsercao(int arr[], int inicio, int fim, int m)
 */
 void QuickSort::quickSortInsercao(GameReview arr[], int inicio, int fim, int m)
 {
-    InsertionSort is = InsertionSort();
-    if (inicio < fim)
-    {
-        if(m == 10)
-        {
-            if (fim - inicio <= 10)
-            {
-                is.insertionSortHibrido(arr, inicio, fim + 1);
-            }
-            else
-            {
-                int part = particionar(arr, inicio, fim);
-                quickSortInsercao(arr, inicio, part - 1, 10);
-                quickSortInsercao(arr, part + 1, fim, 10);
-            }
-        }
-        else
-        {
-            if (fim - inicio <= 100)
-            {
-                is.insertionSortHibrido(arr, inicio, fim + 1);
-            }
-            else
-            {
-                int part = particionar(arr, inicio, fim);
-                quickSortInsercao(arr, inicio, part - 1, 100);
-                quickSortInsercao(arr, part + 1, fim, 100);
-            }
-        }
-    }
+	auto started = chrono::high_resolution_clock::now();
+	auxQuickSortInsercao(arr, inicio, fim, m);
+	auto time = chrono::high_resolution_clock::now() - started;
+	tempoExecucao = chrono::duration<double, std::nano>(time).count();
+}
+
+void QuickSort::auxQuickSortInsercao(GameReview arr[], int inicio, int fim, int m)
+{
+	InsertionSort is = InsertionSort();
+	if (inicio < fim)
+	{
+		if (m == 10)
+		{
+			if (fim - inicio <= 10)
+			{
+				is.insertionSortHibrido(arr, inicio, fim + 1);
+			}
+			else
+			{
+				int part = particionar(arr, inicio, fim);
+				auxQuickSortInsercao(arr, inicio, part - 1, 10);
+				auxQuickSortInsercao(arr, part + 1, fim, 10);
+			}
+		}
+		else
+		{
+			if (fim - inicio <= 100)
+			{
+				is.insertionSortHibrido(arr, inicio, fim + 1);
+			}
+			else
+			{
+				int part = particionar(arr, inicio, fim);
+				auxQuickSortInsercao(arr, inicio, part - 1, 100);
+				auxQuickSortInsercao(arr, part + 1, fim, 100);
+			}
+		}
+	}
 }

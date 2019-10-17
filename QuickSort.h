@@ -23,11 +23,15 @@ class QuickSort
         void quickSort(GameReview arr[], int tam);
         void auxQuickSort(GameReview arr[], int inicio, int fim);
         void quickSortMediana(int arr[], int inicio, int fim, int k);
+		void auxQuickSortMediana(int arr[], int inicio, int fim, int k);
         void quickSortMediana(GameReview arr[], int inicio, int fim, int k);
+        void auxQuickSortMediana(GameReview arr[], int inicio, int fim, int k);
         int mediana(int arr[], int inicio, int fim, int k);
         int mediana(GameReview arr[], int inicio, int fim, int k);
         void quickSortInsercao(int arr[], int inicio, int fim, int m);
+        void auxQuickSortInsercao(int arr[], int inicio, int fim, int m);
         void quickSortInsercao(GameReview arr[], int inicio, int fim, int m);
+        void auxQuickSortInsercao(GameReview arr[], int inicio, int fim, int m);
 
 
     private:

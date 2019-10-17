@@ -21,6 +21,10 @@ using namespace std::chrono;
 extern int numComparacoes;
 extern int numCopias;
 
+// Variáveis que ajudam a manipular o conteúdo exibido pelo display do programa
+const string manyWhiteSpaces = "                                                                                          "; // 90
+const string someWhiteSpaces = "                                               "; // 50
+
 /**
  * Fun��o que troca o valor de duas vari�veis usando uma
  * vari�vel auxiliar
@@ -78,60 +82,161 @@ void randomVector(int vet[], int n)
 
 void Cenario1() 
 {
-	cout << "Cenario 1: Impacto de diferentes estruturas de dados." << endl;
+	cout << "Cenario 1: Impacto de diferentes estruturas de dados." << someWhiteSpaces << endl;
 	SaidaArquivo saida("saida.txt");
 	LeituraArquivo leitura("bgg-13m-reviews.csv");
 
 	saida.WriteLine("Cenario1");
 	int* tamanhos = leitura.LerEntrada();
 
-	cout << "vetor de inteiros de tamanho N..." << endl;
+	cout << "vetor de inteiros de tamanho N..."  << someWhiteSpaces << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "N = " << tamanhos[i]  << "          "<< "\t\r" << flush;
+		cout << "N = " << tamanhos[i]  << someWhiteSpaces << endl;
 		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
 			int* ids = leitura.RandomReadIds(tamanhos[i]);
 
 			QuickSort qs;
 			qs.quickSort(ids, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
+		cout << "\033[F";
 	}
 	cout << "\033[F";
-	cout << "vetor de objetos de tamanho N... " << endl;
+	cout << "vetor de objetos de tamanho N... " << someWhiteSpaces << endl;
 	for (int i = 0; i < 5; i++)
 	{
-		cout << "N = " << tamanhos[i] << "          " << "\t\r" << flush;
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
 		saida.WriteLine(tamanhos[i]);
 		for (int j = 1; j <= 5; j++)
 		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
 			GameReview* registros = leitura.RandomRead(tamanhos[i]);
 
 			QuickSort qs;
 			qs.quickSort(registros, tamanhos[i]);
 			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
 		}
+		cout << "\033[F";
 	}
-	cout << "                                               ";
+	cout << manyWhiteSpaces;
 
-	cout << "\033[F";
-	cout << "                                               ";
-
+	cout << "\033[F" << manyWhiteSpaces;
+	
 	cout << "\033[F";
 	saida.Close();
 
+	cout << "\033[F" << manyWhiteSpaces;
 	cout << "\033[F";
-	cout << "                                                  ";
-	cout << "\033[F";
-	cout << "fim Cenario 1.                                              " << "\t\r" << flush;
+	cout << "fim Cenario 1." << someWhiteSpaces << endl;
 }
 
 void Cenario2()
 {
-	cout << "Cenario 2         " << endl;
+	cout << "Cenario 2: Impacto de variacoes do QuickSort." << someWhiteSpaces << endl;
+	SaidaArquivo saida("saida.txt", true);
+	LeituraArquivo leitura("bgg-13m-reviews.csv");
 
+	saida.WriteLine("Cenario2");
+	int* tamanhos = leitura.LerEntrada();
+
+	cout << "QuickSort recursivo..." << someWhiteSpaces << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
+		saida.WriteLine(tamanhos[i]);
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
+			QuickSort qs;
+			qs.quickSort(ids, tamanhos[i]);
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
+		}
+		cout << "\033[F";
+	}
+	cout << "\033[F";
+	cout << "QuickSort Mediana (k = 3)..." << someWhiteSpaces << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
+		saida.WriteLine(tamanhos[i]);
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
+			QuickSort qs;
+			qs.quickSortMediana(ids, 0, tamanhos[i] -1, 3);
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
+		}
+		cout << "\033[F";
+	}
+	cout << "\033[F";
+	cout << "QuickSort Mediana (k = 5)..." << someWhiteSpaces << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
+		saida.WriteLine(tamanhos[i]);
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
+			QuickSort qs;
+			qs.quickSortMediana(ids, 0, tamanhos[i] - 1, 5);
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
+		}
+		cout << "\033[F";
+	}
+	cout << "\033[F";
+	cout << "QuickSort Insercao (m = 10)..." << someWhiteSpaces << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
+		saida.WriteLine(tamanhos[i]);
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
+			QuickSort qs;
+			qs.quickSortInsercao(ids, 0, tamanhos[i] - 1, 10);
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
+		}
+		cout << "\033[F";
+	}
+	cout << "\033[F";
+	cout << "QuickSort Insercao (m = 100)..." << someWhiteSpaces << endl;
+	for (int i = 0; i < 6; i++)
+	{
+		cout << "N = " << tamanhos[i] << someWhiteSpaces << endl;
+		saida.WriteLine(tamanhos[i]);
+		for (int j = 1; j <= 5; j++)
+		{
+			cout << j << "a ordenacao de 5" << someWhiteSpaces << "\t\r" << flush;
+			int* ids = leitura.RandomReadIds(tamanhos[i]);
+
+			QuickSort qs;
+			qs.quickSortInsercao(ids, 0, tamanhos[i] - 1, 10);
+			saida.WriteResult(qs.numComparacoes, qs.numCopias, qs.tempoExecucao);
+		}
+		cout << "\033[F";
+	}
+	cout << manyWhiteSpaces;
+
+	cout << "\033[F" << manyWhiteSpaces;
+
+	cout << "\033[F";
+	saida.Close();
+
+	cout << "\033[F" << manyWhiteSpaces;
+	cout << "\033[F";
+	cout << "fim Cenario 2." << someWhiteSpaces << endl;
 }
 
 

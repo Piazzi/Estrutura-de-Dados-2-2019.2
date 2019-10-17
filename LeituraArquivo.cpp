@@ -21,7 +21,7 @@ void LeituraArquivo::SetNomeArquivo(string nomeArquivo)
 int* LeituraArquivo::LerEntrada()
 {
 	arquivo.open("entrada.txt");
-	int* entradas = new int[5];
+	int* entradas = new int[6];
 
 	if (arquivo.is_open())
 	{
